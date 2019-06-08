@@ -1,0 +1,238 @@
+header {
+    height: 100px;
+    margin: 10px 0;
+}
+
+section.bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, #CCCCCC 0%, rgba(204, 204, 204, 0) 100%), #FFFFFF;
+}
+
+header a:hover {
+    text-decoration: none;
+}
+
+.logo-img img {
+    width: 60px;
+    height: 60px;
+    background: #339999;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.logo a div {
+    display: inline-block;
+    float: left;
+}
+
+.logo a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo a:hover {
+    color: #337777;
+}
+
+.logo a .logo_text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #337777;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.logo a .logo_text p span {
+
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: normal;
+}
+
+.logo_text_name {
+    font-family: Ubuntu, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 30px;
+    margin: 0;
+
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: #339999;
+    text-decoration: none;
+    height: 80px;
+    line-height: 40px;
+    margin: 10px 0;
+}
+
+#request {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 80px;
+}
+
+#request .non-login div {
+    padding: 40px 0;
+    border-top: solid #339999 2px;
+    border-bottom: solid #339999 2px;
+    width: 350px;
+}
+
+#request .non-login {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+}
+
+#request .non-login p {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    margin: 0 20px;
+    color: #333333;
+
+}
+
+#request .non-login a {
+    font-family: Alegreya Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 43px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    flex-flow: column;
+    background-color: #ccc;
+    border-radius: 5px;
+    margin: 80px 50px 0;
+}
+
+#request .autorize {
+    background-color: #fff;
+    width: 450px;
+    height: 515px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+}
+
+#request .autorize h3 {
+    ont-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 46px;
+    text-align: center;
+
+    color: #333333;
+
+    text-shadow: 1px 2px 4px #CCCCCC;
+    margin-top: 41px;
+}
+
+#request .autorize form {
+    margin: 38px 41px 0;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#request .autorize form input[type=text] {
+    background: rgba(204, 204, 204, 0.15);
+    border: 2px solid #339999;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    height: 34px;
+    width: 230px;
+    margin-left: 38px;
+    padding-left: 15px;
+    position: relative;
+}
+
+#request .autorize form input[type=text]:before {
+    font-family: 'FontAwesome';
+    color:red;
+    position: relative;
+    left: -5px;
+    content: "\f007";
+    width: 20px;
+    height: 20px;
+}
+
+#request .autorize form input[type=submit] {
+    font-family: Alegreya Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    alignment: center;
+    line-height: 31px;
+    text-align: center;
+    background: #339999;
+
+    color: #FFFFFF;
+    width: 140px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    border-radius: 5px;
+    margin-bottom: 45px;
+}
+
+#request .autorize form div{
+    position: relative;
+}
+
+#request .autorize form div i{
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 22px;
+    color: #cccccc;
+}
+
+#request .autorize>p{
+    font-family: Alegreya Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 0px;
+    color: rgba(51, 51, 51, 0.5);
+
+}
+#request .autorize>a{
+    font-family: Alegreya Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 0px;
+    color: #333333;
+    text-decoration: underline;
+}
