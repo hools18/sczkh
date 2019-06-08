@@ -40,15 +40,11 @@ Route::group([
 });
 
 Route::group([
-    'domain' => 'www'.env('APP_DOMAIN'),
+    'domain' => env('APP_DOMAIN'),
     'as' => 'api.',
     'prefix' => 'api',
     'namespace' => 'Api',
 ], function () {
-    Route::get('/', [
-        'as' => 'test',
-        'uses' => 'ApiController@test',
-    ]);
     Route::get('/getCity', [
         'as' => 'city.get',
         'uses' => 'ApiController@getCity',
@@ -56,6 +52,23 @@ Route::group([
     Route::get('/getCategory', [
         'as' => 'category.get',
         'uses' => 'ApiController@getCategory',
+    ]);
+    Route::get('/getArea', [
+        'as' => 'area.get',
+        'uses' => 'ApiController@getArea',
+    ]);
+    Route::get('/getClaim', [
+        'as' => 'claim.get',
+        'uses' => 'ApiController@getClaim',
+    ]);
+
+    Route::any('/sendClaim', [
+        'as' => 'claim.send',
+        'uses' => 'ApiController@sendClaim',
+    ]);
+    Route::any('/sendClaimJson', [
+        'as' => 'claim.sendJson',
+        'uses' => 'ApiController@sendClaimJson',
     ]);
 });
 Route::get('/home', 'HomeController@index')->name('home');

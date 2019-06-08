@@ -29,7 +29,12 @@
                                     <td>{{ $role->name }}</td>
                                     <td>{{ $role->sys_name }}</td>
                                     <td>{{ $role->isActive ? 'Да' : 'Нет' }}</td>
-                                    <td>Действие</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default edit_role"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-default delete_role"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -42,7 +47,7 @@
         </div>
         <div class="row footer-tooltip">
         </div>
-        <div class="modal fade" id="createArea">
+        <div class="modal fade" id="createRole">
             <div class="modal-dialog">
                 <div class="modal-content">
                 </div>

@@ -37,6 +37,12 @@ class CreateClaimsTable extends Migration
             $table->integer('area_operator')->nullable();
             $table->integer('worker_id')->nullable();
 
+
+            $table->text('user_email')->nullable();
+            $table->text('user_phone')->nullable();
+            $table->text('device_id')->nullable();
+            $table->text('browser_hash')->nullable();
+
             $table->timestamps();
         });
     }

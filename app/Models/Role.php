@@ -9,6 +9,7 @@ class Role extends Model
     protected $fillable = [
         'name',
         'sys_name',
+        'category_id',
         'isActive',
     ];
 }

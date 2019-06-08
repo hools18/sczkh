@@ -25,6 +25,31 @@ Route::group([
         'uses' => 'WorkerController@index',
     ]);
     Route::group([
+        'prefix' => 'worker',
+        'as' => 'worker.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'WorkerController@index',
+        ]);
+        Route::put('/showForm', [
+            'as' => 'showForm',
+            'uses' => 'WorkerController@showForm',
+        ]);
+        Route::post('/create', [
+            'as' => 'create',
+            'uses' => 'WorkerController@create',
+        ]);
+        Route::put('/edit', [
+            'as' => 'edit',
+            'uses' => 'WorkerController@edit',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'WorkerController@update',
+        ]);
+    });
+    Route::group([
         'prefix' => 'role',
         'as' => 'role.',
     ], function () {

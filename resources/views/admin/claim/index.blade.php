@@ -11,43 +11,43 @@
                     <div class="box-header">
                     </div>
                     <div class="box-body">
-{{--                        @if($articles->isNotEmpty())--}}
-                            <table class="table">
-                                <tbody>
-                                <tr style="background-color: #c9d7db;">
-                                    <th>ID</th>
-                                    <th>Описание</th>
-                                    <th>Автор</th>
-                                    <th>Дата</th>
-                                    <th>Статус</th>
-                                    <th>Действие</th>
+
+                        <table class="table">
+                            <tbody>
+                            <tr style="background-color: #c9d7db;">
+                                <th>ID</th>
+                                <th>Город</th>
+                                <th>Район</th>
+                                <th>Категория</th>
+                                <th>Заголовок</th>
+                                <th>Описание</th>
+                                <th>Статус</th>
+                                <th>Дата создания</th>
+                                <th>Дата исполнения</th>
+                                <th>Действие</th>
+                            </tr>
+                            @foreach($claims as $claim)
+                                <tr data-claim-id="{{ $claim->id }}" class="claim_row">
+                                    <td>{{ $claim->id }}</td>
+                                    <td>{{ $claim->getCityName() }}</td>
+                                    <td>{{ $claim->getAreaName() }}</td>
+                                    <td>{{ $claim->getCategoryName()}}</td>
+
+                                    <td>{{ $claim->title  }}</td>
+                                    <td>{{ $claim->text_claim }}</td>
+                                    <td>{{ $claim->status }}</td>
+
+                                    <td>{{ $claim->created_at  }}</td>
+                                    <td>{{ $claim->date_expired }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-default">Обработать</a>
+                                        </div>
+                                    </td>
                                 </tr>
-{{--                                @foreach($articles as $article)--}}
-{{--                                    <tr data-article-id="{{ $article->id }}" style="{{ $article->active ? '' : 'background-color:#F8D1BE;' }}" class="article_row">--}}
-{{--                                        <td>{{ $article->id }}</td>--}}
-{{--                                        <td>{!! $article->title !!}</td>--}}
-{{--                                        <td>{{ $article->getUserName() }}</td>--}}
-{{--                                        <td>{{ format_date($article->created_at) }}</td>--}}
-{{--                                        <td class="article_status">{{ $article->active ? 'Да' : 'Нет' }}</td>--}}
-{{--                                        <td>--}}
-{{--                                            <div class="btn-group">--}}
-{{--                                                <a href="{{ route('front.komov.editNew', $article->id) }}" class="btn btn-default">Редактировать</a>--}}
-{{--                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">--}}
-{{--                                                    <span class="caret"></span>--}}
-{{--                                                    <span class="sr-only">Toggle Dropdown</span>--}}
-{{--                                                </button>--}}
-{{--                                                <ul class="dropdown-menu" role="menu">--}}
-{{--                                                    <li><a class="activate-article" data-active-status="{{ $article->active ? 0 : 1 }}">{{ $article->active ? 'Отключить' : 'Включить' }}</a></li>--}}
-{{--                                                    <li><a class="delete-section">Удалить</a></li>--}}
-{{--                                                </ul>--}}
-{{--                                            </div>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
-                                </tbody>
-                            </table>
-{{--                            {{ $articles->links() }}--}}
-{{--                        @endif--}}
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                     <div class="box-footer clearfix">
                     </div>
@@ -56,5 +56,6 @@
         </div>
         <div class="row footer-tooltip">
         </div>
+
     </section>
 @endsection

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
@@ -28,7 +29,7 @@ class RoleController extends Controller
             'route' => route('admin.role.create'),
         ];
         return response()->json([
-            'form' => view('admin.kladder.area.form', $data)->render()
+            'form' => view('admin.role.form', $data)->render()
         ]);
     }
 
@@ -45,23 +46,21 @@ class RoleController extends Controller
 
     public function edit(Request $request)
     {
-        $role = Role::find($request->area_id);
+        $role = Role::find($request->role_id);
         $data = [
             'role' => $role,
             'route' => route('admin.role.update'),
         ];
         return response()->json([
-            'form' => view('admin.kladder.area.form', $data)->render()
+            'form' => view('admin.role.form', $data)->render()
         ]);
     }
 
     public function update(Request $request)
     {
-
         $role = Role::find($request->role_id);
         $role->name = $request->name_role;
         $role->sys_name = $request->sys_name_role;
-
         $role->isActive = filter_var($request->active_role, FILTER_VALIDATE_BOOLEAN);
         $role->save();
 
