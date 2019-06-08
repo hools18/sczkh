@@ -2,6 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Area;
+use App\Models\CategoryClaim;
+use App\Models\City;
+use App\Models\Claim;
+use App\Models\Region;
+use App\Models\Role;
+use App\Models\Specialization;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,6 +30,15 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        Route::model('area', Area::class);
+        Route::model('category', CategoryClaim::class);
+        Route::model('city', City::class);
+        Route::model('claim', Claim::class);
+        Route::model('country', Country::class);
+        Route::model('region', Region::class);
+        Route::model('specialization', Specialization::class);
+        Route::model('role', Role::class);
     }
 
     /**

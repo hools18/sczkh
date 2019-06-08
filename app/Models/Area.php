@@ -21,7 +21,17 @@ class Area extends Model
 
     public function getCityName()
     {
-        return $this->city()->name;
+        return $this->city->name;
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function getCountryName()
+    {
+        return $this->country->name;
     }
 
     public function region()
@@ -30,6 +40,6 @@ class Area extends Model
     }
     public function getRegionName()
     {
-        return $this->region()->name;
+        return $this->region->name;
     }
 }

@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $data = [
-            'categoryes' => CategoryClaim::all(),
+            'categoryes' => CategoryClaim::orderBy('name')->get(),
         ];
 
         return view('admin.category_claim.index', $data);

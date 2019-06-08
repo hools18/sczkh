@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Выберите страну</label>
-                                    <select name="region_id" class="form-control" required>
+                                    <select name="country_id" class="form-control" required>
                                         @foreach($countryes as $country)
                                             <option value="{{ $country->id }}">{{ $country->name }}</option>
                                         @endforeach

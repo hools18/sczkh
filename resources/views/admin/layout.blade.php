@@ -40,10 +40,12 @@
                         <li><a href="{{ route('admin.area.index') }}"><i class="fa fa-circle-o"></i>Районы</a></li>
                     </ul>
                 </li>
+                <li class="{{ active('admin.category.index') }}"><a href="{{ route('admin.category.index') }}"><i class="fa fa-user"></i> <span>Категории</span></a></li>
                 <li class="{{ active('admin.claim.index') }}"><a href="{{ route('admin.claim.index') }}"><i class="fa fa-user"></i> <span>Заявки</span></a></li>
                 <li class="{{ active('admin.user.index') }}"><a href="{{ route('admin.user.index') }}"><i class="fa fa-user"></i> <span>Пользователи</span></a></li>
                 <li class="{{ active('admin.worker.index') }}"><a href="{{ route('admin.worker.index') }}"><i class="fa fa-user"></i> <span>Исполнители</span></a></li>
-                <li class="{{ active('admin.category.index') }}"><a href="{{ route('admin.category.index') }}"><i class="fa fa-user"></i> <span>Категории</span></a></li>
+                <li class="{{ active('admin.worker.index') }}"><a href="{{ route('admin.role.index') }}"><i class="fa fa-user"></i> <span>Роли</span></a></li>
+
             </ul>
         </section>
     </aside>

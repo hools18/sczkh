@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createArea">
+                        <button type="button" class="btn btn-default create_area">
                             Добавить район
                         </button>
                     </div>
@@ -22,14 +22,21 @@
                                 <th>Область</th>
                                 <th>Город</th>
                                 <th>Активность</th>
+                                <th>Действие</th>
                             </tr>
                             @foreach($areas as $area)
-                                <tr>
-                                    <th>{{ $area->id }}</th>
-                                    <th>{{ $area->name }}</th>
-                                    <th>{{ $area->getAreaName() }}</th>
-                                    <th>{{ $area->getCityName() }}</th>
-                                    <th>{{ $area->isActive ? 'Да' : 'Нет' }}</th>
+                                <tr data-area-id="{{ $area->id }}" class="area_row">
+                                    <td>{{ $area->id }}</td>
+                                    <td>{{ $area->name }}</td>
+                                    <td>{{ $area->getRegionName() }}</td>
+                                    <td>{{ $area->getCityName() }}</td>
+                                    <td>{{ $area->isActive ? 'Да' : 'Нет' }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default edit_area"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-default delete_area"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -45,51 +52,59 @@
         <div class="modal fade" id="createArea">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ route('admin.area.create') }}" method="post">
-                        {{ csrf_field() }}
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Добавить район</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="inputName">Название района</label>
-                                    <input type="text" class="form-control" name="name_region" id="inputName">
-                                </div>
-                                <div class="form-group">
-                                    <label>Выберите область</label>
-                                    <select name="region_id" class="form-control" required>
-                                        @foreach($regions as $region)
-                                            <option value="{{ $region->id }}">{{ $region->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Выберите город</label>
-                                    <select name="city_id" class="form-control" required>
-                                    @foreach($cityes as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="active_region"> Активировать
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">отмена</button>
-                            <button type="submit" class="btn btn-primary">Сохранить</button>
-                        </div>
-                    </form>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
     </section>
+@endsection
+@section('js')
+    @parent
+    <script>
+        let modal = $('#createArea');
+        let model_content = $('.modal-content');
+        $('.create_area').click(function () {
+            let data = {
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            $.ajax({
+                    url: '{{ route('admin.area.showForm') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+        $('.edit_area').click(function () {
+            let area_id = $(this).closest('tr.area_row').data('area-id');
+            let data = {
+                area_id: area_id,
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            $.ajax({
+                    url: '{{ route('admin.area.edit') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+        $('.delete_area').click(function () {
+            let area_id = $(this).closest('tr.area_row').data('area-id');
+            console.log('удаляем - ' + area_id);
+        });
+    </script>
 @endsection
