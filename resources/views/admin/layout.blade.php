@@ -28,23 +28,23 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                 <li><a href="{{ route('front.main.index') }}"><i class="fa fa-circle"></i> <span>На сайт</span></a></li>
-                <li class="treeview">
+                <li class="treeview {{ active(['admin.country.index', 'admin.region.index', 'admin.area.index', 'admin.city.index' ]) }}">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
                         <span>(Кладдер)</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.country.index') }}"><i class="fa fa-circle-o"></i>Страны</a></li>
-                        <li><a href="{{ route('admin.region.index') }}"><i class="fa fa-circle-o"></i>Области</a></li>
-                        <li><a href="{{ route('admin.city.index') }}"><i class="fa fa-circle-o"></i>Города</a></li>
-                        <li><a href="{{ route('admin.area.index') }}"><i class="fa fa-circle-o"></i>Районы</a></li>
+                        <li class="{{ active('admin.country.index') }}"><a href="{{ route('admin.country.index') }}"><i class="fa fa-circle-o"></i>Страны</a></li>
+                        <li class="{{ active('admin.region.index') }}"><a href="{{ route('admin.region.index') }}"><i class="fa fa-circle-o"></i>Области</a></li>
+                        <li class="{{ active('admin.area.index') }}"><a href="{{ route('admin.area.index') }}"><i class="fa fa-circle-o"></i>Районы</a></li>
+                        <li class="{{ active('admin.city.index') }}"><a href="{{ route('admin.city.index') }}"><i class="fa fa-circle-o"></i>Города</a></li>
                     </ul>
                 </li>
                 <li class="{{ active('admin.category.index') }}"><a href="{{ route('admin.category.index') }}"><i class="fa fa-user"></i> <span>Категории</span></a></li>
                 <li class="{{ active('admin.claim.index') }}"><a href="{{ route('admin.claim.index') }}"><i class="fa fa-user"></i> <span>Заявки</span></a></li>
                 <li class="{{ active('admin.user.index') }}"><a href="{{ route('admin.user.index') }}"><i class="fa fa-user"></i> <span>Пользователи</span></a></li>
                 <li class="{{ active('admin.worker.index') }}"><a href="{{ route('admin.worker.index') }}"><i class="fa fa-user"></i> <span>Исполнители</span></a></li>
-                <li class="{{ active('admin.worker.index') }}"><a href="{{ route('admin.role.index') }}"><i class="fa fa-user"></i> <span>Роли</span></a></li>
+                <li class="{{ active('admin.role.index') }}"><a href="{{ route('admin.role.index') }}"><i class="fa fa-user"></i> <span>Роли</span></a></li>
 
             </ul>
         </section>

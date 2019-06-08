@@ -10,6 +10,8 @@ use App\Models\Claim;
 use App\Models\Country;
 use App\Models\Region;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Log;
 
 class ApiController extends Controller
 {
@@ -83,7 +85,9 @@ class ApiController extends Controller
 
     public function sendClaim(Request $request)
     {
-        \Log::info('файл с прилоги'.$request.'<br>'.implode($_FILES));
+        $files = $request->file('claim_image');   // file is name of input field
+        Log::info($files->getClientOriginalName().'<br>'.$files->getRealPath());
+//        \Log::info('файл с прилоги'.$request.'<br>'.implode($_FILES));
 
         return response()->json('ok');
 //        $claims = Claim::orderBy('created_at', 'desc')->get();

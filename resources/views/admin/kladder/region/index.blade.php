@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createRegion">
+                        <button type="button" class="btn btn-default create_region">
                             Добавить область
                         </button>
                     </div>
@@ -21,13 +21,20 @@
                                 <th>Название</th>
                                 <th>Страна</th>
                                 <th>Активность</th>
+                                <th>Действие</th>
                             </tr>
                             @foreach($regions as $region)
-                                <tr>
-                                    <th>{{ $region->id }}</th>
-                                    <th>{{ $region->name }}</th>
-                                    <th>{{ $region->getCountryName() }}</th>
-                                    <th>{{ $region->isActive ? 'Да' : 'Нет' }}</th>
+                                <tr data-region-id="{{ $region->id }}" class="region_row">
+                                    <td>{{ $region->id }}</td>
+                                    <td>{{ $region->name }}</td>
+                                    <td>{{ $region->getCountryName() }}</td>
+                                    <td>{{ $region->isActive ? 'Да' : 'Нет' }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default edit_region"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-default delete_region"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -43,39 +50,6 @@
         <div class="modal fade" id="createRegion">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ route('admin.region.create') }}" method="post">
-                        {{ csrf_field() }}
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Добавить область</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="inputName">Название области</label>
-                                    <input type="text" class="form-control" name="name_region" id="inputName">
-                                </div>
-                                <div class="form-group">
-                                    <label>Выберите страну</label>
-                                    <select name="country_id" class="form-control" required>
-                                        @foreach($countryes as $country)
-                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="active_region"> Активировать
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">отмена</button>
-                            <button type="submit" class="btn btn-primary">Сохранить</button>
-                        </div>
-                    </form>
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -83,4 +57,56 @@
         </div>
 
     </section>
+@endsection
+@section('js')
+    @parent
+    <script>
+        let modal = $('#createRegion');
+        let model_content = $('.modal-content');
+        $('.create_region').click(function () {
+            let data = {
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            $.ajax({
+                    url: '{{ route('admin.region.showForm') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+        $('.edit_region').click(function () {
+            let region_id = $(this).closest('tr.region_row').data('region-id');
+            let data = {
+                region_id: region_id,
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            console.log(data);
+            $.ajax({
+                    url: '{{ route('admin.region.edit') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+        $('.delete_region').click(function () {
+            let region_id = $(this).closest('tr.region_row').data('region-id');
+            console.log('удаляем - ' + region_id);
+        });
+    </script>
 @endsection

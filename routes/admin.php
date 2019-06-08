@@ -129,9 +129,21 @@ Route::group([
             'as' => 'index',
             'uses' => 'RegionController@index',
         ]);
+        Route::put('/showForm', [
+            'as' => 'showForm',
+            'uses' => 'RegionController@showForm',
+        ]);
         Route::post('/create', [
             'as' => 'create',
             'uses' => 'RegionController@create',
+        ]);
+        Route::put('/edit', [
+            'as' => 'edit',
+            'uses' => 'RegionController@edit',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'RegionController@update',
         ]);
     });
     Route::group([
