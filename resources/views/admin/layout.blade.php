@@ -34,9 +34,10 @@
                         <span>(Кладдер)</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i>Страны</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>Области</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>Города</a></li>
+                        <li><a href="{{ route('admin.country.index') }}"><i class="fa fa-circle-o"></i>Страны</a></li>
+                        <li><a href="{{ route('admin.region.index') }}"><i class="fa fa-circle-o"></i>Области</a></li>
+                        <li><a href="{{ route('admin.city.index') }}"><i class="fa fa-circle-o"></i>Города</a></li>
+                        <li><a href="{{ route('admin.area.index') }}"><i class="fa fa-circle-o"></i>Районы</a></li>
                     </ul>
                 </li>
                 <li class="{{ active('admin.claim.index') }}"><a href="{{ route('admin.claim.index') }}"><i class="fa fa-user"></i> <span>Заявки</span></a></li>

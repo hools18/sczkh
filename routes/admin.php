@@ -32,14 +32,32 @@ Route::group([
         'as' => 'city.index',
         'uses' => 'CityController@index',
     ]);
-    Route::get('/region', [
-        'as' => 'region.index',
-        'uses' => 'RegionController@index',
-    ]);
-    Route::get('/area', [
-        'as' => 'area.index',
-        'uses' => 'AreaController@index',
-    ]);
+    Route::group([
+        'prefix' => 'region',
+        'as' => 'region.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'RegionController@index',
+        ]);
+        Route::post('/create', [
+            'as' => 'create',
+            'uses' => 'RegionController@create',
+        ]);
+    });
+    Route::group([
+        'prefix' => 'area',
+        'as' => 'area.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'AreaController@index',
+        ]);
+        Route::post('/create', [
+            'as' => 'create',
+            'uses' => 'AreaController@create',
+        ]);
+    });
     Route::group([
         'prefix' => 'category',
         'as' => 'category.',
