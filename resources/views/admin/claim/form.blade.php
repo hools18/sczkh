@@ -19,6 +19,7 @@
             <div class="form-group">
                 <label>Город</label>
                 <select name="region_id" class="form-control" required>
+                    <option disabled selected>Выберите город</option>
                     @foreach($cityes as $city)
                         <option value="{{ $city->id }}" {{ $city->id == $claim->city_id ? 'selected' : '' }}>{{ $city->name }}</option>
                     @endforeach
@@ -27,6 +28,7 @@
             <div class="form-group">
                 <label>Район</label>
                 <select name="region_id" class="form-control" required>
+                    <option disabled selected>Выберите район</option>
                     @foreach($areas as $area)
                         <option value="{{ $area->id }}" {{ $area->id == $claim->area_id ? 'selected' : '' }}>{{ $area->name }}</option>
                     @endforeach
@@ -35,6 +37,7 @@
             <div class="form-group">
                 <label>Категория</label>
                 <select name="region_id" class="form-control" required>
+                    <option disabled selected>Выберите категорию</option>
                     @foreach($categoryes as $category)
                         <option value="{{ $category->id }}" {{ $category->id == $claim->category_claim_id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
@@ -64,12 +67,13 @@
                 <label for="inputName">Описание места события</label>
                 <input type="text" class="form-control" name="name_role" id="inputName" value="{{ $claim->place_description }}">
             </div>
-            @if($claim->getMediaFirst('claim_image'))
-            <div class="form-group">
-                <label for="inputName">Изображение</label>
+            @if($claim->getFirstMedia('claim_image'))
+                <div class="form-group">
+                    <label for="inputName">Изображение</label>
                     <img src="{{ $claim->getMediaFirstUrl('claim_image') }}">
-            </div>
+                </div>
             @endif
+            <input type="hidden" name="status" value="Передано в районный центр">
         </div>
     </div>
     <div class="modal-footer">

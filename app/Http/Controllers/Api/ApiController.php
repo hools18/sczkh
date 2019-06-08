@@ -122,6 +122,11 @@ class ApiController extends Controller
             'browser_hash' => $request->browser_hash,
         ]);
 
+        if ($request->claim_image) {
+            $claim->addMedia($request->claim_image)->usingName(md5_file($request->claim_image->getRealPath()))
+                ->usingFileName('original_photo.jpeg')->toMediaCollection('main_photo');
+        }
+
         return response()->json([
             'claim_id' => $claim->id,
         ]);

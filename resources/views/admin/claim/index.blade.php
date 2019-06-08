@@ -41,7 +41,7 @@
                                     <td>{{ $claim->date_expired }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-default">Обработать</a>
+                                            <a class="btn btn-default show_claim">Обработать</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -56,6 +56,39 @@
         </div>
         <div class="row footer-tooltip">
         </div>
-
+        <div class="modal fade" id="showClaim">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
     </section>
+@endsection
+@section('js')
+    @parent
+    <script>
+        let modal = $('#showClaim');
+        let model_content = $('.modal-content');
+        $('.show_claim').click(function () {
+            let claim_id = $(this).closest('tr.claim_row').data('claim-id');
+            let data = {
+                claim_id: claim_id,
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            $.ajax({
+                    url: '{{ route('admin.claim.showForm') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+    </script>
 @endsection
