@@ -53,5 +53,9 @@ Route::group([
         'as' => 'city.get',
         'uses' => 'ApiController@getCity',
     ]);
+    Route::get('/getCategory', [
+        'as' => 'category.get',
+        'uses' => 'ApiController@getCategory',
+    ]);
 });
 Route::get('/home', 'HomeController@index')->name('home');
