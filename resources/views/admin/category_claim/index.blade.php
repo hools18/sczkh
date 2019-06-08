@@ -23,9 +23,9 @@
                             </tr>
                             @foreach($categoryes   as $category)
                                 <tr>
-                                    <th>{{ $category->id }}</th>
-                                    <th>{{ $category->name }}</th>
-                                    <th>{{ $category->isActive ? 'Да' : 'Нет' }}</th>
+                                    <td>{{ $category->id }}</td>
+                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->isActive ? 'Да' : 'Нет' }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

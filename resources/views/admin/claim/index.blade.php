@@ -11,7 +11,6 @@
                     <div class="box-header">
                     </div>
                     <div class="box-body">
-
                         <table class="table">
                             <tbody>
                             <tr style="background-color: #c9d7db;">

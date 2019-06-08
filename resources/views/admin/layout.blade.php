@@ -34,10 +34,10 @@
                         <span>(Кладдер)</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ active('admin.country.index') }}"><a href="{{ route('admin.country.index') }}"><i class="fa fa-circle-o"></i>Страны</a></li>
+{{--                        <li class="{{ active('admin.country.index') }}"><a href="{{ route('admin.country.index') }}"><i class="fa fa-circle-o"></i>Страны</a></li>--}}
                         <li class="{{ active('admin.region.index') }}"><a href="{{ route('admin.region.index') }}"><i class="fa fa-circle-o"></i>Области</a></li>
-                        <li class="{{ active('admin.area.index') }}"><a href="{{ route('admin.area.index') }}"><i class="fa fa-circle-o"></i>Районы</a></li>
                         <li class="{{ active('admin.city.index') }}"><a href="{{ route('admin.city.index') }}"><i class="fa fa-circle-o"></i>Города</a></li>
+                        <li class="{{ active('admin.area.index') }}"><a href="{{ route('admin.area.index') }}"><i class="fa fa-circle-o"></i>Районы</a></li>
                     </ul>
                 </li>
                 <li class="{{ active('admin.category.index') }}"><a href="{{ route('admin.category.index') }}"><i class="fa fa-user"></i> <span>Категории</span></a></li>

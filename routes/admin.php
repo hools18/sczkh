@@ -17,6 +17,23 @@ Route::group([
         'uses' => 'UserController@index',
     ]);
     Route::group([
+        'prefix' => 'user',
+        'as' => 'user.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'UserController@index',
+        ]);
+        Route::put('/edit', [
+            'as' => 'edit',
+            'uses' => 'UserController@edit',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'UserController@update',
+        ]);
+    });
+    Route::group([
         'prefix' => 'claim',
         'as' => 'claim.',
     ], function () {
