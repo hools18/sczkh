@@ -245,7 +245,7 @@ nav a:hover {
 .address .map {
     width: 550px;
     height: 442px;
-    background: #333333;
+    background: url("../images/map.png");
 
 }
 
@@ -257,8 +257,8 @@ div.down-arrow {
     text-decoration: none;
     height: 50px;
     padding: 12px 20px;
-    top: 60%;
-    left: 70%;
+    top: 44%;
+    left: 31%;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
