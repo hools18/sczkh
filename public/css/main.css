@@ -580,6 +580,22 @@ select {
     align-content: space-between;
 }
 
+@media (min-width: 768px) {
+    #request {
+        flex-direction: column;
+    }
+
+    #request > div {
+        width: 100%;
+        display: block;
+    }
+
+    #request > div :nth-child(2) {
+        margin-top: 20px;
+    }
+}
+
+
 .popup {
     width: 100%;
     height: 100%;
@@ -820,8 +836,6 @@ input[type=checkbox] {
 /*.news {*/
 /*    width: 80%;*/
 /*}*/
-
-
 .news_item {
     border-bottom: 2px solid #339999;
     padding-bottom: 20px;

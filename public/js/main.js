@@ -26,6 +26,7 @@ function sendClaim(e) {
 
     var form = $('#claim_form');
     var formData = new FormData(form[0]);
+    console.log(formData);
     $.ajax({
         data: formData,
         cache: false,
