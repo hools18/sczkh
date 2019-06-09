@@ -836,7 +836,8 @@ input[type=checkbox] {
 .news_footer {
     align-items: flex-end;
 }
-.news_footer p{
+
+.news_footer p {
     font-family: Alegreya Sans;
     font-style: normal;
     font-weight: normal;
@@ -861,4 +862,53 @@ input[type=checkbox] {
     line-height: 22px;
     text-indent: 15px;
     color: #333333;
+}
+
+.feedback_image {
+    width: 80px;
+    height: 80px;
+    margin: 0 50px;
+
+}
+
+.feedback_header p {
+    margin-left: 40px;;
+}
+
+.feedback_content hr {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border: 0;
+    border-bottom: 2px solid #339999;
+    background: transparent;
+
+}
+
+.feedback_item {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #339999;
+}
+
+.feedback_content {
+    text-align: left;
+}
+
+.feedback_body .body {
+    width: 685px;
+    height: 95px;
+}
+
+.feedback_body .body textarea {
+    width: 100%;
+    height: 100%;
+}
+
+.feedback_send_content {
+    margin-top: 40px;
+    margin-left: 150px;
+}
+
+.rating select{
+    width: 50px;
 }
