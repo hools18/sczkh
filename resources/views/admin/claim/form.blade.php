@@ -61,7 +61,7 @@
             </div>
             <div class="form-group">
                 <label>Квартира</label>
-                <input type="text" class="form-control" name="apartment"  value="{{ $claim->apartament }}">
+                <input type="text" class="form-control" name="apartment"  value="{{ $claim->apartment }}">
             </div>
             <div class="form-group">
                 <label>Описание места события</label>

@@ -8,6 +8,7 @@ use App\Models\CategoryClaim;
 use App\Models\City;
 use App\Models\Claim;
 use App\Models\Country;
+use App\Models\News;
 use App\Models\Region;
 use App\User;
 use Illuminate\Http\Request;
@@ -84,10 +85,26 @@ class ApiController extends Controller
         ]);
     }
 
+    public function getNews()
+    {
+        $news = News::orderBy('created_at', 'desc')->where('isActive', true)->get();
+        $json_news = [];
+        foreach ($news as $new) {
+            $item['title'] = $new->title;
+            $item['text'] = $new->text;
+            $item['date'] = $new->created_at;
+            $json_news[] = $item;
+        }
+
+        return response()->json([
+            'claim' => $json_news,
+        ]);
+    }
+
     public function sendClaim(Request $request)
     {
         $files = $request->file('claim_image');   // file is name of input field
-        Log::info($files->getClientOriginalName().'<br>'.$files->getRealPath());
+        Log::info($files->getClientOriginalName() . '<br>' . $files->getRealPath());
 
 //        \Log::info('файл с прилоги'.$request.'<br>'.implode($_FILES));
 
@@ -107,6 +124,7 @@ class ApiController extends Controller
 
     public function sendClaimJson(Request $request)
     {
+        Log::info($request);
         $city = City::where('id', $request->city_id)->first();
         $area = Area::where('id', $request->area_id)->first();
         $claim = Claim::create([
@@ -137,5 +155,16 @@ class ApiController extends Controller
         return response()->json([
             'claim_id' => $claim->id,
         ]);
+    }
+
+    public function updateJson(Request $request)
+    {
+        $claim = Claim::find($request->claim);
+
+        $claim->user_phone = $request->sms;
+        $claim->user_email = $request->email;
+        $claim->save();
+
+        return response()->json('ok');
     }
 }

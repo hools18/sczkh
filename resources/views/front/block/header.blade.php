@@ -14,12 +14,12 @@
         </div>
         <div class="col-md-8">
             <nav>
-                <a href="#">Главная</a>
-                <a href="#">Информация</a>
-                <a href="#">Список заявок</a>
+                <a href="{{ route('front.main.index') }}">Главная</a>
+                <a href="{{ route('front.news.index') }}">Информация</a>
+                <a href="{{ route('front.claim.index') }}">Список заявок</a>
+                <a href="{{ route('front.feedback.index') }}">Отзывы</a>
                 <a href="#">Личный кабинет</a>
-                <a href="#">Отзывы</a>
-                <a href="#">Поддержка</a>
+                {{--<a href="#">Поддержка</a>--}}
             </nav>
         </div>
     </div>

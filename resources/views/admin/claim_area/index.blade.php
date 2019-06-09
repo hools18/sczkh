@@ -76,7 +76,7 @@
                 '_method': 'PUT'
             };
             $.ajax({
-                    url: '{{ route('admin.claim.showForm') }}',
+                    url: '{{ route('admin.claim_area.showAreaForm') }}',
                     type: "POST",
                     data: data,
                     dataType: "json"
@@ -90,22 +90,15 @@
             });
         });
         $(document).on('submit', '#claimForm', function (e) {
+            e.preventDefault();
             let form = $('#claimForm');
             let formData = new FormData(form[0]);
             // if(form.find('select[name="city_id]').val().length < 1){
             //     alert('Выберите город');
             //     return false;
             // }
-            if(isEmpty($('.select_city').val())){
-                alert('Город не указан');
-                return false;
-            }
-            if(isEmpty($('.select_area').val())){
-                alert('Район не указан');
-                return false;
-            }
-            if(isEmpty($('.select_category').val())){
-                alert('Категория не указана');
+            if(isEmpty($('.select_worker').val())){
+                alert('Исполнитель не указан');
                 return false;
             }
             $.ajax({
@@ -115,12 +108,13 @@
                 contentType: false,
                 dataType: 'json',
                 headers: {
-                    'X-CSRF-TOKEN': token
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 type: 'POST',
                 url: form.attr('action')
             }).done(function (response) {
                 location.reload();
+                e.preventDefault();
             }).fail(function (response) {
                 console.log(response);
             });

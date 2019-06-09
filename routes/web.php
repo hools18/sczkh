@@ -16,9 +16,22 @@ Route::group([
         'as' => 'claim.index',
         'uses' => 'ClaimController@index',
     ]);
-    Route::any('/claim/form', [
+    Route::get('/claim/form', [
         'as' => 'claim.form',
-        'uses' => 'ClaimController@form',
+        'uses' => 'ClaimController@showFormClaim',
+    ]);
+    Route::get('/news', [
+        'as' => 'news.index',
+        'uses' => 'NewsController@index',
+    ]);
+
+    Route::get('/news/show', [
+        'as' => 'news.show',
+        'uses' => 'NewsController@show',
+    ]);
+    Route::get('/feedback', [
+        'as' => 'feedback.index',
+        'uses' => 'FeedbackController@index',
     ]);
 });
 Route::group([
@@ -62,6 +75,11 @@ Route::group([
         'uses' => 'ApiController@getClaim',
     ]);
 
+    Route::get('/getNews', [
+        'as' => 'claim.get',
+        'uses' => 'ApiController@getNews',
+    ]);
+
     Route::any('/sendClaim', [
         'as' => 'claim.send',
         'uses' => 'ApiController@sendClaim',
@@ -69,6 +87,10 @@ Route::group([
     Route::any('/sendClaimJson', [
         'as' => 'claim.sendJson',
         'uses' => 'ApiController@sendClaimJson',
+    ]);
+    Route::any('/updateJson', [
+        'as' => 'claim.update',
+        'uses' => 'ApiController@updateJson',
     ]);
 });
 Route::get('/home', 'HomeController@index')->name('home');
