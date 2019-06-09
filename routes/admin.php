@@ -12,18 +12,69 @@ Route::group([
         'as' => 'index',
         'uses' => 'MainController@index',
     ]);
-    Route::get('/claim', [
-        'as' => 'claim.index',
-        'uses' => 'ClaimController@index',
-    ]);
     Route::get('/user', [
         'as' => 'user.index',
         'uses' => 'UserController@index',
     ]);
-    Route::get('/worker', [
-        'as' => 'worker.index',
-        'uses' => 'WorkerController@index',
-    ]);
+    Route::group([
+        'prefix' => 'user',
+        'as' => 'user.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'UserController@index',
+        ]);
+        Route::put('/edit', [
+            'as' => 'edit',
+            'uses' => 'UserController@edit',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'UserController@update',
+        ]);
+    });
+    Route::group([
+        'prefix' => 'claim',
+        'as' => 'claim.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'ClaimController@index',
+        ]);
+        Route::put('/showForm', [
+            'as' => 'showForm',
+            'uses' => 'ClaimController@showForm',
+        ]);
+        Route::post('/transferArea', [
+            'as' => 'transferArea',
+            'uses' => 'ClaimController@transferArea',
+        ]);
+    });
+    Route::group([
+        'prefix' => 'worker',
+        'as' => 'worker.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'WorkerController@index',
+        ]);
+        Route::put('/showForm', [
+            'as' => 'showForm',
+            'uses' => 'WorkerController@showForm',
+        ]);
+        Route::post('/create', [
+            'as' => 'create',
+            'uses' => 'WorkerController@create',
+        ]);
+        Route::put('/edit', [
+            'as' => 'edit',
+            'uses' => 'WorkerController@edit',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'WorkerController@update',
+        ]);
+    });
     Route::group([
         'prefix' => 'role',
         'as' => 'role.',
@@ -57,9 +108,21 @@ Route::group([
             'as' => 'index',
             'uses' => 'CityController@index',
         ]);
+        Route::put('/showForm', [
+            'as' => 'showForm',
+            'uses' => 'CityController@showForm',
+        ]);
         Route::post('/create', [
             'as' => 'create',
             'uses' => 'CityController@create',
+        ]);
+        Route::put('/edit', [
+            'as' => 'edit',
+            'uses' => 'CityController@edit',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'CityController@update',
         ]);
     });
     Route::group([
@@ -83,9 +146,21 @@ Route::group([
             'as' => 'index',
             'uses' => 'RegionController@index',
         ]);
+        Route::put('/showForm', [
+            'as' => 'showForm',
+            'uses' => 'RegionController@showForm',
+        ]);
         Route::post('/create', [
             'as' => 'create',
             'uses' => 'RegionController@create',
+        ]);
+        Route::put('/edit', [
+            'as' => 'edit',
+            'uses' => 'RegionController@edit',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'RegionController@update',
         ]);
     });
     Route::group([

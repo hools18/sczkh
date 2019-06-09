@@ -18,6 +18,8 @@ class CreateWorkersTable extends Migration
             $table->text('name');
             $table->text('description')->nullable();
             $table->text('phone')->nullable();
+            $table->integer('city_id');
+            $table->integer('area_id');
             $table->boolean('isActive')->default(false);
             $table->timestamps();
         });

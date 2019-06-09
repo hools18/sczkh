@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createCity">
+                        <button type="button" class="btn btn-default create_city">
                             Добавить город
                         </button>
                     </div>
@@ -21,13 +21,20 @@
                                 <th>Название</th>
                                 <th>Область</th>
                                 <th>Активность</th>
+                                <th>Действие</th>
                             </tr>
                             @foreach($cityes as $city)
-                                <tr>
-                                    <th>{{ $city->id }}</th>
-                                    <th>{{ $city->name }}</th>
-                                    <th>{{ $city->getRegionName() }}</th>
-                                    <th>{{ $city->isActive ? 'Да' : 'Нет' }}</th>
+                                <tr data-city-id="{{ $city->id }}" class="city_row">
+                                    <td>{{ $city->id }}</td>
+                                    <td>{{ $city->name }}</td>
+                                    <td>{{ $city->getRegionName() }}</td>
+                                    <td>{{ $city->isActive ? 'Да' : 'Нет' }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default edit_city"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-default delete_city"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -43,43 +50,59 @@
         <div class="modal fade" id="createCity">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ route('admin.city.create') }}" method="post">
-                        {{ csrf_field() }}
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Добавить город</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="inputName">Название города</label>
-                                    <input type="text" class="form-control" name="name_city" id="inputName">
-                                </div>
-                                <div class="form-group">
-                                    <label>Выберите область</label>
-                                    <select name="region_id" class="form-control" required>
-                                        @foreach($regions as $region)
-                                            <option value="{{ $region->id }}">{{ $region->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="active_city"> Активировать
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">отмена</button>
-                            <button type="submit" class="btn btn-primary">Сохранить</button>
-                        </div>
-                    </form>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
     </section>
+@endsection
+@section('js')
+    @parent
+    <script>
+        let modal = $('#createCity');
+        let model_content = $('.modal-content');
+        $('.create_city').click(function () {
+            let data = {
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            $.ajax({
+                    url: '{{ route('admin.city.showForm') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+        $('.edit_city').click(function () {
+            let city_id = $(this).closest('tr.city_row').data('city-id');
+            let data = {
+                city_id: city_id,
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            $.ajax({
+                    url: '{{ route('admin.city.edit') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+        $('.delete_city').click(function () {
+            let area_id = $(this).closest('tr.city_row').data('city-id');
+            console.log('удаляем - ' + area_id);
+        });
+    </script>
 @endsection

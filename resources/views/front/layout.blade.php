@@ -1,33 +1,22 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Cистема заявок ЖКХ</title>
-    <link rel="stylesheet" href="/build/bundle.css?ver={{ time() }}">
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="../css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/084c4d79e8.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <title><?php $header ?></title>
 </head>
 <body>
-<div class="container">
-    <div class="header clearfix">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="{{ active('front.main.index') }}"><a href="{{ route('front.main.index') }}">Главная</a></li>
-                <li role="presentation" class="{{ active('auth.login') }}"><a href="{{ route('auth.login') }}">Вход</a></li>
-                <li role="presentation" class="{{ active('auth.register') }}"><a href="{{ route('auth.register') }}">Регистрация</a></li>
-                <li role="presentation" class="{{ active('front.claim.index') }}"><a href="{{ route('front.claim.index') }}">Мои заявки</a></li>
-            </ul>
-        </nav>
-        <a href="{{ route('front.main.index') }}">
-            <h3 class="text-muted">Cистема заявок ЖКХ</h3>
-        </a>
-    </div>
+@include('front.block.header')
+<section id="request" class="container">
     @yield('content')
-    <footer class="footer">
-    </footer>
-</div>
-<script src="/build/bundle.js"></script>
+</section>
 </body>
 </html>
