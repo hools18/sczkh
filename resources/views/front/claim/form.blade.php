@@ -115,16 +115,16 @@
                 </div>
             </div>
         </form>
-        <div class="popup flex_row hor_center vert_center">
+        <div class="popup flex_row hor_center vert_center"  id="result_popup">
             <div class="confirm_request flex_column hor_center">
                 <div class="close">
                     <a href=""><img src="../images/delete-button.png" alt="close">
                     </a>
                 </div>
                 <h4>Спасибо!</h4>
-                <h5>Заявка № 98090-8к</h5>
+                <h5>Заявка № <span id="result_id">98090-8к</span></h5>
                 <p>успешно отправлена на рассмотрение</p>
-                <form action="" class="flex_column hor_center feedbaks feedback_variants">
+                <form action="/api/updateJson" class="flex_column hor_center feedbaks feedback_variants" id="confirm_feedback"  token="{{ csrf_token()}}">
                     <p>Куда отправить ответ?</p>
                     <div class="feedback_type flex_row space_between feedbaks">
                         <div>
@@ -140,7 +140,7 @@
                         </div>
                         <input type="text" name="sms">
                     </div>
-                    <input type="submit" class="send_btn" value="Подтвердить">
+                    <input type="button" class="send_btn" value="Подтвердить" onclick="sendConfirmCallback()">
                 </form>
                 <div class="flex_column hor_center new_request">
                     <p>Хотите оставить заявку ещё?</p>

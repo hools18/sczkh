@@ -26,7 +26,6 @@ function sendClaim(e) {
 
     var form = $('#claim_form');
     var formData = new FormData(form[0]);
-    console.log(formData.get('city_id'));
     $.ajax({
         data: formData,
         cache: false,
@@ -39,24 +38,39 @@ function sendClaim(e) {
         type: 'POST',
         url: form.attr('action')
     }).done(function (response) {
-        alert(response);
-        location.reload();
+        var result = JSON.parse(response);
+        console.log(result);
+        console.log(response);
+        $('result_popup').show();
+        $('result_id').text(result["claim_id"])
         e.preventDefault();
     }).fail(function (response) {
         console.log(response);
     });
-    // var url = form.attr('action');
-    // var s = form.serialize();
-    //
-    // $.ajax({
-    //     type: "POST",
-    //     url: url,
-    //     data: form.serialize(), // serializes the form's elements.
-    //
-    //     success: function (data) {
-    //         alert(data); // show response from the php script.
-    //     }
-    // });
+}
 
+function sendConfirmCallback() {
 
+    var form = $('#confirm_feedback');
+    var formData = new FormData(form[0]);
+    $.ajax({
+        data: formData,
+        cache: false,
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': form.attr('token')
+        },
+        type: 'POST',
+        url: form.attr('action')
+    }).done(function (response) {
+        window.location.href = "/";
+        location.reload();
+        e.preventDefault();
+    }).fail(function (response) {
+        console.log(response);
+        window.location.href = "/";
+        location.reload();
+    });
 }
