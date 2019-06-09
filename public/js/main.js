@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $(".checks #home").onchange(homeClicked());
-    $(".checks #street").onchange(streetClicked());
+    $(".checks #home").change(streetClicked());
+    $(".checks #street").change(homeClicked());
 });
 
 
@@ -44,7 +44,7 @@ function sendClaim(e) {
     }).fail(function (response) {
         console.log(response);
     });
-        // var url = form.attr('action');
+    // var url = form.attr('action');
     // var s = form.serialize();
     //
     // $.ajax({
