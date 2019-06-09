@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="content">
-        <form action="/api/sendClaim">
+        <form action="/api/sendClaimJson" id="claim_form" token="{{ csrf_token()}}">
             <div class="address">
                 <div class="map">
                     <div class="down-arrow">Вы здесь?</div>

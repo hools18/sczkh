@@ -24,8 +24,9 @@ function streetClicked() {
 
 function sendClaim(e) {
 
-    var form = $("#claim_form");
+    var form = $('#claim_form');
     var formData = new FormData(form[0]);
+    console.log(formData.get('city_id'));
     $.ajax({
         data: formData,
         cache: false,
@@ -33,7 +34,7 @@ function sendClaim(e) {
         contentType: false,
         dataType: 'json',
         headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            'X-CSRF-TOKEN': form.attr('token')
         },
         type: 'POST',
         url: form.attr('action')
