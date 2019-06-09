@@ -50,6 +50,37 @@ Route::group([
             'uses' => 'ClaimController@transferArea',
         ]);
     });
+
+    Route::group([
+        'prefix' => 'claim_area',
+        'as' => 'claim_area.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'showArea',
+            'uses' => 'ClaimController@showArea',
+        ]);
+        Route::put('/showForm', [
+            'as' => 'showFormArea',
+            'uses' => 'ClaimController@showFormArea',
+        ]);
+        Route::post('/transferWorker', [
+            'as' => 'transferWorker',
+            'uses' => 'ClaimController@transferWorker',
+        ]);
+    });
+    Route::group([
+        'prefix' => 'claim_worker',
+        'as' => 'claim_worker.',
+    ], function () {
+        Route::get('/', [
+            'as' => 'showWorker',
+            'uses' => 'ClaimController@showWorker',
+        ]);
+        Route::put('/showForm', [
+            'as' => 'showFormWorker',
+            'uses' => 'ClaimController@showFormWorker',
+        ]);
+    });
     Route::group([
         'prefix' => 'worker',
         'as' => 'worker.',
@@ -196,9 +227,25 @@ Route::group([
             'as' => 'index',
             'uses' => 'CategoryController@index',
         ]);
+        Route::put('/showForm', [
+            'as' => 'showForm',
+            'uses' => 'CategoryController@showForm',
+        ]);
         Route::post('/create', [
             'as' => 'create',
             'uses' => 'CategoryController@create',
+        ]);
+        Route::put('/edit', [
+            'as' => 'edit',
+            'uses' => 'CategoryController@edit',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'CategoryController@update',
+        ]);
+        Route::delete('/delete', [
+            'as' => 'delete',
+            'uses' => 'CategoryController@delete',
         ]);
     });
 });

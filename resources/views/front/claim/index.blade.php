@@ -1,42 +1,48 @@
 @extends('front.layout')
-
 @section('content')
-    <table class="table table-hover">
-        <tr>
-            <th>Номер</th>
-            <th>Описание</th>
-            <th>Дата</th>
-            <th>Статус</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Нет горячей воды</td>
-            <td>2018-04-09 10:25</td>
-            <td>Отправлена</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Прорыв канализации</td>
-            <td>2018-08-09 15:25</td>
-            <td>Принято в работу</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Упало дерево</td>
-            <td>2018-06-09 12:25</td>
-            <td>Обрабатывается</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Обрыв оптико-волоконного кабеля</td>
-            <td>2018-01-01 01:25</td>
-            <td>Успешно завершено</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Запах газа в подъезде</td>
-            <td>2018-01-09 23:25</td>
-            <td>Отклонена</td>
-        </tr>
-    </table>
+    <div id="content">
+        <div class="flex_row_bottom space_between info_list">
+            <h4>Список заявок</h4>
+            <div class="relative">
+                <select class="down-arrow" name="category" id="category">
+                    <option value="">Все категории</option>
+                    @foreach($categoryes as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                <label for="category" class="triangle"></label>
+            </div>
+
+        </div>
+        <div class="information">
+            <div class="info_grid header">
+                <p class="info_grid_index">
+                    Номер заявки
+                </p>
+                <p class="info_grid_status">
+                    Статус
+                </p>
+                <p class="info_grid_description">
+                    Краткое описание
+                </p>
+            </div>
+            <div class="info_grid flex_column" id="items">
+                @foreach($claims as $claim)
+                    <form action="like">
+                        <input type="hidden" name="request_id" value="{{ $claim->id }}">
+                        <p class="info_grid_index">
+                            {{ $claim->id }}
+                        </p>
+                        <p class="info_grid_status">
+                            {{ $claim->status }}
+                        </p>
+                        <div class="info_grid_description flex_row space_between like_group">
+                            <p class="basis_auto"> {{ $claim->title }}</p>
+                            <input type="button" class="send_btn" value="Поддержать">
+                        </div>
+                    </form>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection

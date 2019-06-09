@@ -35,6 +35,7 @@ class Claim extends Model implements HasMedia
         'device_id',
         'browser_hash',
         'date_expired',
+        'system_status',
     ];
 
     public function city()

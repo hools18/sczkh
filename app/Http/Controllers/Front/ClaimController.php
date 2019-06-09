@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoryClaim;
 use App\Models\Claim;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,11 @@ class ClaimController extends Controller
 {
     public function index()
     {
-        return view('front.claim.index');
+        $data = [
+            'categoryes' => CategoryClaim::where('isActive', true)->orderBy('name')->get(),
+            'claims' => Claim::latest()->get(),
+        ];
+        return view('front.claim.index', $data);
     }
 
     public function form(Request $request)

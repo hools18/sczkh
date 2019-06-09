@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                        <button type="button" class="btn btn-default create_category">
                             Добавить категорию
                         </button>
                     </div>
@@ -20,59 +20,110 @@
                                 <th>ID</th>
                                 <th>Название</th>
                                 <th>Активность</th>
+                                <th>Действие</th>
                             </tr>
                             @foreach($categoryes   as $category)
-                                <tr>
+                                <tr data-category-id="{{ $category->id }}" class="category_row">
                                     <td>{{ $category->id }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->isActive ? 'Да' : 'Нет' }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default edit_category"><i
+                                                        class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-default delete_category"><i
+                                                        class="fa fa-trash"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="box-footer">
-
                     </div>
                 </div>
             </div>
         </div>
         <div class="row footer-tooltip">
         </div>
-        <div class="modal fade" id="modal-default">
+        <div class="modal fade" id="createCategory">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ route('admin.category.create') }}" method="post">
-{{--                    <form action="/category/create" method="post">--}}
-                       {{ csrf_field() }}
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Добавить категорию</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="exampleInputName">Название категории</label>
-                                    <input type="text" class="form-control" name="name_category" id="exampleInputName">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="active_category"> Активировать
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">отмена</button>
-                            <button type="submit" class="btn btn-primary">Сохранить</button>
-                        </div>
-                    </form>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </section>
+@endsection
+@section('js')
+    @parent
+    <script>
+        let modal = $('#createCategory');
+        let model_content = $('.modal-content');
+        $('.create_category').click(function () {
+            let data = {
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            $.ajax({
+                    url: '{{ route('admin.category.showForm') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+        $('.edit_category').click(function () {
+            let category_id = $(this).closest('tr.category_row').data('category-id');
+            let data = {
+                category_id: category_id,
+                '_token': '{{ csrf_token() }}',
+                '_method': 'PUT'
+            };
+            console.log(data);
+            $.ajax({
+                    url: '{{ route('admin.category.edit') }}',
+                    type: "POST",
+                    data: data,
+                    dataType: "json"
+                }
+            ).done(function (response) {
+                model_content.empty();
+                model_content.append(response['form']);
+                modal.modal('show');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+        $('.delete_category').click(function () {
+            let category_row = $(this).closest('tr.category_row');
+            let category_id = category_row.data('category-id');
+            let data = {
+                category_id: category_id,
+                '_token': '{{ csrf_token() }}',
+                '_method': 'DELETE'
+            };
+            var r = confirm("Вы точно хотите удалить категорию\n");
+            if (r === true) {
+
+                $.ajax({
+                        url: '{{ route('admin.category.delete') }}',
+                        type: "POST",
+                        data: data,
+                        dataType: "json"
+                    }
+                ).done(function (response) {
+                    category_row.remove();
+                }).fail(function (response) {
+                    console.log(response);
+                });
+            }
+        });
+    </script>
 @endsection

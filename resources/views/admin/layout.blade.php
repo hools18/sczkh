@@ -41,7 +41,9 @@
                     </ul>
                 </li>
                 <li class="{{ active('admin.category.index') }}"><a href="{{ route('admin.category.index') }}"><i class="fa fa-user"></i> <span>Категории</span></a></li>
-                <li class="{{ active('admin.claim.index') }}"><a href="{{ route('admin.claim.index') }}"><i class="fa fa-user"></i> <span>Заявки</span></a></li>
+                <li class="{{ active('admin.claim.index') }}"><a href="{{ route('admin.claim.index') }}"><i class="fa fa-user"></i> <span>Заявки(Город)</span></a></li>
+                <li class="{{ active('admin.claim_area.showArea') }}"><a href="{{ route('admin.claim_area.showArea') }}"><i class="fa fa-user"></i> <span>Заявки(Район)</span></a></li>
+                <li class="{{ active('admin.claim_worker.showWorker') }}"><a href="{{ route('admin.claim_worker.showWorker') }}"><i class="fa fa-user"></i> <span>Заявки(Исполнитель)</span></a></li>
                 <li class="{{ active('admin.user.index') }}"><a href="{{ route('admin.user.index') }}"><i class="fa fa-user"></i> <span>Пользователи</span></a></li>
                 <li class="{{ active('admin.worker.index') }}"><a href="{{ route('admin.worker.index') }}"><i class="fa fa-user"></i> <span>Исполнители</span></a></li>
                 <li class="{{ active('admin.role.index') }}"><a href="{{ route('admin.role.index') }}"><i class="fa fa-user"></i> <span>Роли</span></a></li>
@@ -57,6 +59,11 @@
 </div>
 @section('js')
     <script src="build/bundle.js"></script>
+    <script>
+        function isEmpty(str) {
+            return (typeof str === "undefined" || str === null || str ===  "");
+        }
+    </script>
 @show
 </body>
 </html>

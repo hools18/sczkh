@@ -126,6 +126,7 @@ class ApiController extends Controller
             'sender_id' => $request->user_id,
             'device_id' => $request->device_id,
             'browser_hash' => $request->browser_hash,
+            'status' => 'Принято в обработку',
         ]);
 
         if ($request->claim_image) {

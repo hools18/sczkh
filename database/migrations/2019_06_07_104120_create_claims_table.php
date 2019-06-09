@@ -32,6 +32,7 @@ class CreateClaimsTable extends Migration
             $table->integer('text_claim')->nullable();
 
             $table->text('status')->nullable();
+            $table->integer('system_status')->default(0);
             $table->integer('sender_id')->nullable();
             $table->integer('city_operator')->nullable();
             $table->integer('area_operator')->nullable();
