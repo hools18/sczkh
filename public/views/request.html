@@ -11,6 +11,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
     <title><?php $header ?></title>
 </head>
 <body>
@@ -43,7 +47,7 @@
 
 <section class="container">
     <div id="content">
-        <form action="send">
+        <form action="https://sczkh.tk/api/sendClaimJson" id="claim_form">
             <div class="address">
                 <div class="map">
                     <div class="down-arrow">Вы здесь?</div>
@@ -53,13 +57,14 @@
                     <div class="checks">
                         <div>
                             <input type="radio" id="home" name="adress_type" value="home"
-                                   checked onclick="homeClicked();">
+                                   checked onchange="homeClicked()">
                             <label for="home">В здании</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="in_street" name="adress_type" value="street">
-                            <label for="in_street" onclick="streetClicked();">На улице</label>
+                            <input type="radio" id="in_street" name="adress_type" value="street"
+                                   onchange="streetClicked()">
+                            <label for="in_street">На улице</label>
                         </div>
                     </div>
                     <h6>Введите недостающие данные</h6>
@@ -150,7 +155,7 @@
                                 <input type="button" value="Выбрать видео">
                             </div>
                         </div>
-                        <input class="send_btn" type="submit" value="Отправить">
+                        <input class="send_btn" type="button" value="Отправить" onclick="sendClaim()">
                     </div>
                 </div>
                 <div>
@@ -161,7 +166,7 @@
     </div>
 </section>
 
-<section class="popup flex_row hor_center vert_center">
+<div class="popup flex_row hor_center vert_center">
     <div class="confirm_request flex_column hor_center">
         <div class="close">
             <a href=""><img src="../images/delete-button.png" alt="close">
@@ -197,8 +202,8 @@
         </div>
 
     </div>
-</section>
+</div>
 
-<script src="../js/app.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>
