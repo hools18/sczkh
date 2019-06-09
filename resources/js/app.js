@@ -30,3 +30,22 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+function homeClicked() {
+    let home = $(".checks #home");
+    if (home.is(":checked"))
+        return;
+    home.setProperty("checked", "checked");
+    $(".map_text h6").hide();
+
+}
+
+
+function streetClicked() {
+    let street = $(".checks #street");
+    if (street.is(":checked"))
+        return;
+    street.setProperty("checked", "checked");
+    $(".map_text h6").show();
+}

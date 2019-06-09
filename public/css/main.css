@@ -390,6 +390,17 @@ div.map_text p {
     width: 200px;
 }
 
+.form_info select {
+    width: 208px;
+    border: 1px solid #339999;
+}
+
+.form_info #street {
+    width: 208px;
+    border: 1px solid #339999;
+}
+
+
 .form_info .more input {
     height: 38px;
 }
@@ -909,6 +920,6 @@ input[type=checkbox] {
     margin-left: 150px;
 }
 
-.rating select{
+.rating select {
     width: 50px;
 }
