@@ -38,11 +38,8 @@ function sendClaim(e) {
         type: 'POST',
         url: form.attr('action')
     }).done(function (response) {
-        var result = JSON.parse(response);
-        console.log(result);
-        console.log(response);
         $('result_popup').show();
-        $('result_id').text(result["claim_id"])
+        $('result_id').text(response["claim_id"])
         e.preventDefault();
     }).fail(function (response) {
         console.log(response);

@@ -47,7 +47,7 @@
 
 <section class="container">
     <div id="content">
-        <form action="https://sczkh.tk/api/sendClaimJson" id="claim_form"  token="{{ csrf_token()}}">
+        <form action="https://sczkh.tk/api/sendClaimJson" id="claim_form" token="{{ csrf_token()}}">
             <div class="address">
                 <div class="map">
                     <div class="down-arrow">Вы здесь?</div>
@@ -166,16 +166,17 @@
     </div>
 </section>
 
-<div class="popup flex_row hor_center vert_center"  id="result_popup">
+<div class="popup flex_row hor_center vert_center" id="result_popup">
     <div class="confirm_request flex_column hor_center">
         <div class="close">
-            <a href=""><img src="../images/delete-button.png" alt="close">
+            <a href="/"><img src="../images/delete-button.png" alt="close">
             </a>
         </div>
         <h4>Спасибо!</h4>
         <h5>Заявка № <span id="result_id">98090-8к</span></h5>
         <p>успешно отправлена на рассмотрение</p>
-        <form action="/api/updateJson" class="flex_column hor_center feedbaks feedback_variants" id="confirm_feedback"  token="{{ csrf_token()}}">
+        <form action="/api/updateJson" class="flex_column hor_center feedbaks feedback_variants" id="confirm_feedback"
+              token="{{ csrf_token()}}">
             <p>Куда отправить ответ?</p>
             <div class="feedback_type flex_row space_between feedbaks">
                 <div>
