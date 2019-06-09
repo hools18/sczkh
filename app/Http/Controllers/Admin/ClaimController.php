@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\CategoryClaim;
 use App\Models\City;
 use App\Models\Claim;
+use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -32,13 +33,49 @@ class ClaimController extends Controller
         return view('admin.claim_area.index', $data);
     }
 
+    public function showAreaForm(Request $request)
+    {
+        $claim = Claim::find($request->claim_id);
+        $data = [
+            'route' => route('admin.claim_area.transferWorker'),
+            'claim' => $claim,
+            'workers' => Worker::where('city_id', $claim->city_id)->where('area_id', $claim->area_id)->get(),
+        ];
+        return response()->json([
+            'form' => view('admin.claim_area.form', $data)->render(),
+        ]);
+    }
+
     public function showWorker()
     {
         $data = [
-            'claims' => Claim::latest()->where('system_status', 2)->get()
+            'claims' => Claim::latest()->where('system_status', 2)->orWhere('system_status',3)->get()
         ];
 
         return view('admin.claim_worker.index', $data);
+    }
+
+    public function showWorkerForm(Request $request)
+    {
+        $claim = Claim::find($request->claim_id);
+        $data = [
+            'claim' => $claim,
+            'route' => route('admin.claim_worker.update')
+        ];
+        return response()->json([
+            'form' => view('admin.claim_worker.form', $data)->render(),
+        ]);
+    }
+
+    public function workerUpdate(Request $request)
+    {
+        $claim = Claim::find($request->claim_id);
+        $claim->status = $request->status;
+        $claim->system_status = 3;
+        $claim->save();
+        return response()->json([
+            'message' => 'Статус обновлен'
+        ]);
     }
 
     public function showForm(Request $request)
@@ -79,6 +116,17 @@ class ClaimController extends Controller
         $claim->system_status = 1;
         $claim->save();
 
-        return;
+        return response()->json('Ok');
+    }
+
+    public function transferWorker(Request $request)
+    {
+        $claim = Claim::find($request->claim_id);
+        $claim->worker_id = $request->worker_id;
+        $claim->status = $request->status;
+        $claim->system_status = 2;
+        $claim->save();
+
+        return response()->json('Ok');
     }
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="../css/main.css" rel="stylesheet">
@@ -11,12 +12,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <title><?php $header ?></title>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+    <link rel="manifest" href="/manifest.json">
+    <title>{{ $header ?? '' }}</title>
 </head>
 <body>
 @include('front.block.header')
 <section class="container">
     @yield('content')
 </section>
+@section('js')
+    {{--<script>--}}
+        {{--if ('serviceWorker' in navigator) {--}}
+            {{--// Регистрация service worker-а, расположенного в корне сайта--}}
+            {{--// за счет использования дефолтного scope (не указывая его)--}}
+            {{--navigator.serviceWorker.register('/sw.js').then(function (registration) {--}}
+                {{--console.log('Service worker зарегистрирован:', registration);--}}
+            {{--}).catch(function (error) {--}}
+                {{--console.log('Ошибка при регистрации service worker-а:', error);--}}
+            {{--});--}}
+        {{--} else {--}}
+            {{--// Текущий браузер не поддерживает service worker-ы.--}}
+            {{--console.log('Текущий браузер не поддерживает service worker-ы');--}}
+        {{--}--}}
+
+    {{--</script>--}}
+@show
 </body>
 </html>

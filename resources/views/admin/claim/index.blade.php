@@ -90,6 +90,7 @@
             });
         });
         $(document).on('submit', '#claimForm', function (e) {
+            e.preventDefault();
             let form = $('#claimForm');
             let formData = new FormData(form[0]);
             // if(form.find('select[name="city_id]').val().length < 1){
@@ -115,12 +116,13 @@
                 contentType: false,
                 dataType: 'json',
                 headers: {
-                    'X-CSRF-TOKEN': token
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 type: 'POST',
                 url: form.attr('action')
             }).done(function (response) {
                location.reload();
+                e.preventDefault();
             }).fail(function (response) {
                 console.log(response);
             });

@@ -69,6 +69,11 @@ class Claim extends Model implements HasMedia
         return $this->belongsTo(Worker::class);
     }
 
+    public function getWorkerName()
+    {
+        return $this->worker->name;
+    }
+
     public function getCityName()
     {
         return $this->city->name;

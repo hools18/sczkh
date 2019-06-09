@@ -60,8 +60,8 @@ Route::group([
             'uses' => 'ClaimController@showArea',
         ]);
         Route::put('/showForm', [
-            'as' => 'showFormArea',
-            'uses' => 'ClaimController@showFormArea',
+            'as' => 'showAreaForm',
+            'uses' => 'ClaimController@showAreaForm',
         ]);
         Route::post('/transferWorker', [
             'as' => 'transferWorker',
@@ -77,8 +77,12 @@ Route::group([
             'uses' => 'ClaimController@showWorker',
         ]);
         Route::put('/showForm', [
-            'as' => 'showFormWorker',
-            'uses' => 'ClaimController@showFormWorker',
+            'as' => 'showWorkerForm',
+            'uses' => 'ClaimController@showWorkerForm',
+        ]);
+        Route::post('/update', [
+            'as' => 'update',
+            'uses' => 'ClaimController@workerUpdate',
         ]);
     });
     Route::group([
