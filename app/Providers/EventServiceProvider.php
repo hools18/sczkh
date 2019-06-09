@@ -18,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\onClaimChange'                             => [
+            'App\Listeners\ClaimChangeListener',
+        ],
+
     ];
 
     /**

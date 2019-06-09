@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Список заявок(городской оператор)</h1>
+        <h1>Список заявок(районный оператор)</h1>
     </section>
     <section class="content">
         <div class="row">
@@ -120,7 +120,7 @@
                 type: 'POST',
                 url: form.attr('action')
             }).done(function (response) {
-               location.reload();
+                location.reload();
             }).fail(function (response) {
                 console.log(response);
             });

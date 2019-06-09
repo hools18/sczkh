@@ -15,7 +15,7 @@
 </head>
 <body>
 @include('front.block.header')
-<section id="request" class="container">
+<section class="container">
     @yield('content')
 </section>
 </body>
