@@ -40,7 +40,6 @@ function sendClaim(e) {
     }).done(function (response) {
         $('result_popup').show();
         $('result_id').text(response["claim_id"])
-        e.preventDefault();
     }).fail(function (response) {
         console.log(response);
     });
@@ -64,7 +63,6 @@ function sendConfirmCallback() {
     }).done(function (response) {
         window.location.href = "/";
         location.reload();
-        e.preventDefault();
     }).fail(function (response) {
         console.log(response);
         window.location.href = "/";
