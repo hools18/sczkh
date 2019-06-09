@@ -70,3 +70,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+ЦИФРОВОЙ ПРОРЫВ Воронеж Absolute Balance 
+
+Над проектом работали: Сергей Иванов (front) Сергей Шарков (back end) Татьяна Рубцова (UI/UX) Сергей Кирюшин (Team lead) Артём Винокуров (Android)
+
+
