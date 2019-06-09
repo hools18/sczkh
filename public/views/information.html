@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="../css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/084c4d79e8.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <title><?php $header ?></title>
+</head>
+<body>
+<section class="bg">
+</section>
+<header class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="logo">
+                <a href="/">
+                    <div class="logo_text">
+                        <p class="logo_text_name">СЗЖКХ <br><span>Сообщите нам о проблеме</span></p>
+                    </div>
+                    <div class="logo-img"><img src="../images/logo.png" alt="logo"></div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <nav>
+                <a href="#">Главная</a>
+                <a href="#">Информация</a>
+                <a href="#">Список заявок</a>
+                <a href="#">Личный кабинет</a>
+                <a href="#">Отзывы</a>
+                <a href="#">Поддержка</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="container">
+    <div id="content">
+        <div class="flex_row_bottom space_between info_list">
+            <h4>Список заявок</h4>
+            <div class="relative">
+                <select class="down-arrow" name="category" id="category">
+                    <option value="">Все категории</option>
+                    <option value="1">ЖКХ</option>
+                    <option value="2">Газовая служба</option>
+                </select>
+                <label for="category"
+                       class="triangle"></label>
+            </div>
+
+        </div>
+        <div class="information">
+            <div class="info_grid header">
+                <p class="info_grid_index">
+                    Номер заявки
+                </p>
+                <p class="info_grid_status">
+                    Статус
+                </p>
+                <p class="info_grid_description">
+                    Краткое описание
+                </p>
+            </div>
+            <div class="info_grid flex_column" id="items">
+                <form action="like">
+                    <input type="hidden" name="request_id" value="1">
+                    <p class="info_grid_index">
+                        5113513-523ыв
+                    </p>
+                    <p class="info_grid_status">
+                        Принято в работу
+                    </p>
+                    <div class="info_grid_description flex_row space_between like_group">
+                        <p class="basis_auto"> Прорвало трубу в подвале</p>
+                        <input type="submit" class="send_btn" value="Поддержать">
+                    </div>
+                </form>
+                <form action="like">
+                    <input type="hidden" name="request_id" value="1">
+                    <p class="info_grid_index">
+                        5113513-523ыв
+                    </p>
+                    <p class="info_grid_status">
+                        Принято в работу
+                    </p>
+                    <div class="info_grid_description flex_row space_between like_group">
+                        <p class="basis_auto"> Прорвало трубу в подвале</p>
+                        <input type="submit" class="send_btn" value="Поддержать">
+                    </div>
+                </form>
+                <form action="like">
+                    <input type="hidden" name="request_id" value="1">
+                    <p class="info_grid_index">
+                        5113513-523ыв
+                    </p>
+                    <p class="info_grid_status">
+                        Принято в работу
+                    </p>
+                    <div class="info_grid_description flex_row space_between like_group">
+                        <p class="basis_auto"> Прорвало трубу в подвале</p>
+                        <input type="submit" class="send_btn" value="Поддержать">
+                    </div>
+                </form>
+                <form action="like">
+                    <input type="hidden" name="request_id" value="1">
+                    <p class="info_grid_index">
+                        5113513-523ыв
+                    </p>
+                    <p class="info_grid_status">
+                        Принято в работу
+                    </p>
+                    <div class="info_grid_description flex_row space_between like_group">
+                        <p class="basis_auto"> Прорвало трубу в подвале</p>
+                        <input type="submit" class="send_btn" value="Поддержать">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
