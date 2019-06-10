@@ -74,6 +74,6 @@ The Laravel framework is open-source software licensed under the [MIT license](h
 
 ЦИФРОВОЙ ПРОРЫВ Воронеж Absolute Balance 
 
-Над проектом работали: Сергей Иванов (front) Сергей Шарков (back end) Татьяна Рубцова (UI/UX) Сергей Кирюшин (Team lead) Артём Винокуров (Android)
+Над проектом работали: Сергей Шарков (front) Сергей Иванов (back end) Татьяна Рубцова (UI/UX) Сергей Кирюшин (Team lead) Артём Винокуров (Android)
 
 
